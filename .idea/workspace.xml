@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53d5b48a-4301-4042-a8c6-7e803eceefce" name="Changes" comment="Criação de alguns métodos e atributos da maioria das classes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Areas/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Areas/Area.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Areas/Cemiterio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Areas/MontanhaGelida.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Armaduras/Armadura.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Armas/ArcoEFlecha.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Armas/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Armas/Arma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Armas/Cajado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Armas/EspadaLonga.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Combate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Cemiterio/Esqueleto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Cemiterio/Zumbi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Geral/Morcego.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Geral/Slime.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Inimigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Inimigo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/MontanhaGelida/BonecoDeNeve.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/MontanhaGelida/Ieti.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Personagem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Players/Arqueiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Players/Arqueiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Players/Guerreiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Players/Guerreiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Players/Mago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Players/Mago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Players/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Database/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +45,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "project.structure.last.edited": "SDKs",
+    "last_opened_file_path": "C:/Users/helio/Documents/Codigo/Projeto_POO_BD_Helio",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
@@ -111,6 +91,7 @@
       <workItem from="1655398913658" duration="569000" />
       <workItem from="1655401619045" duration="4224000" />
       <workItem from="1655407476783" duration="1703000" />
+      <workItem from="1655409345154" duration="116000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1655166071667</created>

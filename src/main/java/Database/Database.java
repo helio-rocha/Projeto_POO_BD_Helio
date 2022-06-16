@@ -13,8 +13,8 @@ public abstract class Database {
     static final String database = "projeto";           // nome do banco de dados a ser utilizado
 
     // string com URL de conexão com servidor
-    //static final String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
-    static final String url = "jdbc:mysql://localhost:3306/" + database;
+    static final String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
+    //static final String url = "jdbc:mysql://localhost:3306/" + database;
     public boolean check = false;
 
     public void connect(){
