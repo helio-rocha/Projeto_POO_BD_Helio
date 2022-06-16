@@ -4,5 +4,6 @@ import Personagens.Inimigos.Inimigo;
 
 public abstract class Area
 {
-    Inimigo[] inimigos;
+    public String nome;
+    public Inimigo[] inimigos;
 }

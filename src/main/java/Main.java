@@ -1,6 +1,3 @@
-import Personagens.Players.Arqueiro;
-import Personagens.Players.Guerreiro;
-import Personagens.Players.Mago;
 import Personagens.Players.Player;
 
 import java.util.Scanner;
@@ -15,58 +12,34 @@ public class Main
         while (flag)
         {
             System.out.println("Jogo");
-            System.out.println("Pressione 1 para criar um Novo Personagem");
+            System.out.println("Pressione 1 para criar um novo personagem");
             System.out.println("Pressione 2 para escolher um personagem criado");
+            System.out.println("Pressione 3 criar um novo inimigo");
+            System.out.println("Pressione 3 ver os inimigos existentes");
+            System.out.println("Pressione 4 criar uma nova área");
+            System.out.println("Pressione 4 ver as áreas existentes");
+            System.out.println("Pressione 5 para sair");
             int op = sc.nextInt();
             Player player = null;
             switch (op)
             {
                 case 1:
-                    System.out.println("Pressione 1 para criar um arqueiro");
-                    System.out.println("Pressione 2 para criar um guerreiro");
-                    System.out.println("Pressione 3 para criar um mago");
-                    op = sc.nextInt();
-                    System.out.println("Entre com o nome do personagem");
-                    switch (op)
-                    {
-                        case 1:
-                            player = new Arqueiro(sc.nextLine());
-                            break;
-                        case 2:
-                            player = new Guerreiro(sc.nextLine());
-                            break;
-                        case 3:
-                            player = new Mago(sc.nextLine());
-                            sc.nextInt();
-                            break;
-                        default:
-                            System.out.println("Número inválido");
-                            break;
-                    }
-                case 2:
-                    // Banco de dados
-            }
-            System.out.println("Pressione 1 se deseja ir batalhar");
-            System.out.println("Pressione 2 se deseja ver os status");
-            System.out.println("Pressione 3 se deseja sair");
-            op = sc.nextInt();
-            switch (op)
-            {
-                case 1:
-                    System.out.println("Selecione a área em que deseja batalhar");
-                    //op = sc.nextInt();
+                    while (!Utilidades.criarPersonagem());
+                    System.out.println("Personagem Criado");
                     break;
                 case 2:
-                    if (player!=null) player.printStatus();
+                    while (Utilidades.escolherPersonagem()); // Banco de dados
                     break;
                 case 3:
+                    Utilidades.mostrarInimigos();
+                    break;
+                case 4:
+                    Utilidades.mostrarAreas();
+                    break;
+                case 5:
                     flag = false;
                     break;
-                default:
-                    System.out.println("Número inválido");
-                    break;
             }
-
         }
     }
 }

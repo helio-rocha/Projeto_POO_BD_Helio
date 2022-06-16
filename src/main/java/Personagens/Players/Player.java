@@ -1,19 +1,16 @@
 package Personagens.Players;
 
-import Armas.ArcoEFlecha;
 import Armas.Arma;
-import Armaduras.Armadura;
-import Armas.EspadaLonga;
-import Personagens.Combate;
-import Personagens.Inimigos.Inimigo;
-import Personagens.Personagem;
 
 import java.util.List;
 
-public abstract class Player extends Personagem implements Combate
+public abstract class Player
 {
-    protected int pontosAtaque;
+    protected int id;
     protected String nome;
+    protected int danoBase;
+    protected int vida;
+    protected int danoTotal;
 
     static int vidaBase;
 
@@ -22,75 +19,26 @@ public abstract class Player extends Personagem implements Combate
     protected int inteligencia;
     protected int destreza;
     protected int sabedoria;
-
-    protected Armadura armadura;
     protected Arma arma;
+
+    protected List inventario;
 
     public Player(String nome)
     {
-        vitalidade += 5;
-        forca += 5;
-        inteligencia += 5;
-        destreza += 5;
-        sabedoria += 5;
+        vitalidade = 5;
+        forca = 5;
+        inteligencia = 5;
+        destreza = 5;
+        sabedoria = 5;
 
         this.nome = nome;
 
         vida = vidaBase + 10*vitalidade;
-        pontosArmadura = 0;
 
-        armadura = new Armadura("Sem Armadura",0);
-        arma = null;
+        arma = new Arma("Sem arma", 0);
+
+        danoTotal = danoBase + arma.getDano();
     }
-
-    public void aumentaForca(int quant)
-    {
-        forca += quant;
-        pontosAtaque += forca*10;
-    }
-
-    public void aumentaVitalidade(int quant)
-    {
-        vitalidade += quant;
-        vida += vitalidade*10;
-    }
-
-    public void aumentaInteligencia(int quant)
-    {
-        inteligencia += quant;
-        pontosAtaque += inteligencia*10;
-    }
-
-    public void aumentaDestreza(int quant)
-    {
-        destreza += quant;
-        pontosAtaque += destreza*10;
-    }
-
-    public void aumentaSabedoria(int quant)
-    {
-        sabedoria += quant;
-        pontosAtaque += sabedoria*10;
-    }
-
-    protected int calcDano(Inimigo inimigo)
-    {
-        int danoEfetivo;
-        if(arma instanceof ArcoEFlecha)
-        {
-            danoEfetivo = arma.calculaDano(arma.getDano(),destreza,forca,inimigo.getArmadura());
-        }
-        else if (arma instanceof EspadaLonga)
-        {
-            danoEfetivo = arma.calculaDano(arma.getDano(),forca,vitalidade,inimigo.getArmadura());
-        }
-        else
-        {
-            danoEfetivo = arma.calculaDano(arma.getDano(),inteligencia,sabedoria,inimigo.getArmadura());
-        }
-        return danoEfetivo;
-    }
-
 
     public int getVida()
     {
@@ -102,21 +50,67 @@ public abstract class Player extends Personagem implements Combate
         this.vida = vida;
     }
 
-    public int getPontosArmadura()
+    public String getNome()
     {
-        return pontosArmadura;
+        return nome;
     }
 
-    public void setPontosArmadura(int pontosArmadura)
+    public int getDanoBase()
     {
-        this.pontosArmadura = pontosArmadura;
+        return danoBase;
+    }
+
+    public int getDanoTotal()
+    {
+        return danoTotal;
+    }
+
+    public static int getVidaBase()
+    {
+        return vidaBase;
+    }
+
+    public int getVitalidade()
+    {
+        return vitalidade;
+    }
+
+    public int getForca()
+    {
+        return forca;
+    }
+
+    public int getInteligencia()
+    {
+        return inteligencia;
+    }
+
+    public int getDestreza()
+    {
+        return destreza;
+    }
+
+    public int getSabedoria()
+    {
+        return sabedoria;
+    }
+
+    public Arma getArma()
+    {
+        return arma;
+    }
+
+    public List getInventario()
+    {
+        return inventario;
     }
 
     public void printStatus()
     {
         System.out.println("Nome: " + nome);
         System.out.println("Vida: " + vida);
-        System.out.println("Pontos de Armadura: " + pontosArmadura);
+        System.out.println("Dano base: " + danoBase);
+        System.out.println("Dano Total: " + danoTotal);
 
         System.out.println("Vitalidade: " + vitalidade);
         System.out.println("inteligência: " + inteligencia);
@@ -124,9 +118,48 @@ public abstract class Player extends Personagem implements Combate
         System.out.println("Destreza: " + destreza);
         System.out.println("Sabedoria: " + sabedoria);
 
-        System.out.println("Arma equipada");
-        System.out.println("Nome da arma: " + arma.getNome());
-        System.out.println("Dano da arma: " + arma.getDano());
-
+        if (arma!=null)
+        {
+            System.out.println("Arma equipada");
+            System.out.println("Nome da arma: " + arma.getNome());
+            System.out.println("Dano da arma: " + arma.getDano());
+        }
     }
+
+    public void mudaNome(String nome)
+    {
+        this.nome = nome;
+    }
+
+    public void mostraInventario()
+    {
+        // Busca no BD
+        System.out.println("Se deseja equipar uma arma aperte o seu número, caso contrário aperte 0 para sair");
+    }
+
+    public void criarArma(String nome,int dano)
+    {
+        Arma arma = new Arma(nome, dano);
+        this.addInventario(arma);
+    }
+
+    public void addInventario(Arma arma)
+    {
+        // adicionar BD
+        // adiciona inventário
+    }
+
+    public void trocarArma(Arma arma)
+    {
+        this.addInventario(this.arma);
+        this.arma = arma;
+        this.removeInventario(arma);
+    }
+
+    public void removeInventario(Arma arma)
+    {
+        // Remove lista
+        // Remove BD
+    }
+
 }

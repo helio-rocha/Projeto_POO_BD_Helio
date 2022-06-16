@@ -1,6 +1,6 @@
 package Armas;
 
-public abstract class Arma
+public class Arma
 {
     protected String nome;
 
@@ -11,10 +11,14 @@ public abstract class Arma
         return dano;
     }
 
-    abstract public int calculaDano(int dano, int atrib1, int atrib2, int armadura);
-
     public String getNome()
     {
         return nome;
+    }
+
+    public Arma(String nome, int dano)
+    {
+        this.nome = nome;
+        this.dano = dano;
     }
 }

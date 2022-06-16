@@ -1,11 +1,15 @@
 package Personagens.Inimigos;
 
-import Personagens.Combate;
-import Personagens.Personagem;
-
-public abstract class Inimigo extends Personagem implements Combate
+public abstract class Inimigo
 {
     protected int dano;
+    public String nome;
+    protected int vida;
+
+    public Inimigo()
+    {
+        this.dano = 10;
+    }
 
     public int getVida()
     {
@@ -17,11 +21,6 @@ public abstract class Inimigo extends Personagem implements Combate
         return dano;
     }
 
-    public int getArmadura()
-    {
-        return pontosArmadura;
-    }
-
     public void setVida(int vida)
     {
         this.vida = vida;
@@ -31,12 +30,5 @@ public abstract class Inimigo extends Personagem implements Combate
     {
         this.dano = dano;
     }
-
-    public void setArmadura(int armadura)
-    {
-        this.pontosArmadura = armadura;
-    }
-
-
 
 }
