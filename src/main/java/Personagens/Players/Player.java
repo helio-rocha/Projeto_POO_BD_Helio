@@ -26,7 +26,7 @@ public class Player
         return id;
     }
 
-    public Player(int id, String nome, int vida, int danoTotal, int danoBase, int vitalidade, int forca, int sabedoria, int inteligencia, int destreza,Arma arma)
+    public Player(int id, String nome, int vida, int danoTotal, int danoBase, int vitalidade, int forca, int sabedoria, int inteligencia, int destreza)
     {
         this.id = id;
         this.nome = nome;
@@ -147,5 +147,10 @@ public class Player
     public void setArma(Arma arma)
     {
         this.arma = arma;
+    }
+
+    public void setDanototal(int danoBase)
+    {
+        this.danoTotal = danoBase;
     }
 }

@@ -181,6 +181,7 @@ public class Utilidades
                     {
                         arma.setIs_equipado(false);
                         armaDB.desequipaArma(arma.getId());
+                        player.setDanototal(player.getDanoBase());
                         player.setArma(null);
                     }
                     else
@@ -190,7 +191,8 @@ public class Utilidades
                             armaDB.desequipaArma(player.getArma().getId());
                         }
                         player.setArma(arma);
-                        armaDB.equipaArma(arma.getId());
+                        player.setDanototal(player.getDanoBase()+arma.getDano());
+                        armaDB.equipaArma(arma.getId(),arma.getDano());
                         arma.setIs_equipado(true);
                     }
                     break;

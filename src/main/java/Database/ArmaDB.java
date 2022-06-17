@@ -146,6 +146,10 @@ public class ArmaDB extends Database
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             pst.execute();
+            sql = "UPDATE player SET danoTotal = danoBase WHERE id=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.execute();
             check = true;
         }catch (SQLException e){
             System.out.println("Erro de operação: " + e.getMessage());
@@ -160,13 +164,19 @@ public class ArmaDB extends Database
         }
     }
 
-    public void equipaArma(int id)
+    public void equipaArma(int id, int dano)
     {
         connect();
         String sql = "UPDATE arma SET is_equipado = true WHERE id=?";
         try{
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
+            pst.execute();
+            check = true;
+            sql = "UPDATE player SET danoTotal = danoBase + ? WHERE id=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, dano);
+            pst.setInt(2, id);
             pst.execute();
             check = true;
         }catch (SQLException e){

@@ -75,7 +75,7 @@ public class PlayerDB extends Database
     {
         connect();
         Player player = null;
-        String sql = "SELECT * FROM player_arma WHERE id = ?";
+        String sql = "SELECT * FROM player WHERE id = ?";
         try{
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
@@ -92,11 +92,6 @@ public class PlayerDB extends Database
                 int playerSabedoria = result.getInt("sabedoria");
                 int playerInteligencia = result.getInt("inteligencia");
                 int playerDestreza = result.getInt("destreza");
-                int armaId = result.getInt("id_arma");
-                String armaNome = result.getString("nome_arma");
-                int armaDano = result.getInt("dano");
-                boolean armaIsEquipado = result.getBoolean("is_equipado");
-                Arma arma = new Arma(armaId,armaNome,armaDano,armaIsEquipado);
                 System.out.println("ID = " + playerID);
                 System.out.println("Nome = " + playerNome);
                 System.out.println("Dano Total = " + playerDanoTotal);
@@ -107,7 +102,20 @@ public class PlayerDB extends Database
                 System.out.println("Inteligencia = " + playerInteligencia);
                 System.out.println("Destreza = " + playerDestreza);
                 System.out.println("------------------------------");
-                player = new Player(playerID,playerNome,playerVida,playerDanoTotal,playerDanoBase,playerVitalidade,playerForca,playerSabedoria,playerInteligencia,playerDestreza,arma);
+                player = new Player(playerID,playerNome,playerVida,playerDanoTotal,playerDanoBase,playerVitalidade,playerForca,playerSabedoria,playerInteligencia,playerDestreza);
+            }
+            sql = "SELECT * FROM player_arma WHERE id = ?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            result = pst.executeQuery();
+            while(result.next())
+            {
+                int armaId = result.getInt("id_arma");
+                String armaNome = result.getString("nome_arma");
+                int armaDano = result.getInt("dano");
+                boolean armaIsEquipado = result.getBoolean("is_equipado");
+                Arma arma = new Arma(armaId,armaNome,armaDano,armaIsEquipado);
+                if (player!=null) player.setArma(arma);
             }
         }catch (SQLException e){
             System.out.println("Erro de operação: " + e.getMessage());

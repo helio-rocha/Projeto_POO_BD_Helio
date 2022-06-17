@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53d5b48a-4301-4042-a8c6-7e803eceefce" name="Changes" comment="Ajustes básicos de modificadores de acesso">
+    <list default="true" id="53d5b48a-4301-4042-a8c6-7e803eceefce" name="Changes" comment="Correção de erros no momento de criar/equipar/desequipar as armas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Armas/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Armas/Arma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Database/ArmaDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Database/ArmaDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Database/PlayerDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Database/PlayerDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Players/Player.java" afterDir="false" />
@@ -99,7 +98,7 @@
       <workItem from="1655420646178" duration="4543000" />
       <workItem from="1655434035106" duration="496000" />
       <workItem from="1655470853784" duration="5181000" />
-      <workItem from="1655485646560" duration="14905000" />
+      <workItem from="1655485646560" duration="16874000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1655166071667</created>
@@ -143,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655499495229</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Correção de erros no momento de criar/equipar/desequipar as armas">
+      <created>1655502941877</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655502941877</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +170,7 @@
     <MESSAGE value="Mudança da JDK de 11 para 18" />
     <MESSAGE value="Versão funcional faltando ajustes" />
     <MESSAGE value="Ajustes básicos de modificadores de acesso" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustes básicos de modificadores de acesso" />
+    <MESSAGE value="Correção de erros no momento de criar/equipar/desequipar as armas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção de erros no momento de criar/equipar/desequipar as armas" />
   </component>
 </project>
