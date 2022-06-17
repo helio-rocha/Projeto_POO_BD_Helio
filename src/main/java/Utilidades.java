@@ -1,7 +1,10 @@
+import Areas.Area;
+import Armas.Arma;
+import Database.AreaDB;
+import Database.ArmaDB;
+import Database.InimigoDB;
 import Database.PlayerDB;
-import Personagens.Players.Arqueiro;
-import Personagens.Players.Guerreiro;
-import Personagens.Players.Mago;
+import Personagens.Inimigos.Inimigo;
 import Personagens.Players.Player;
 
 import java.util.Scanner;
@@ -10,108 +13,521 @@ public class Utilidades
 {
     static Scanner sc = new Scanner(System.in);
     static PlayerDB playerDB = new PlayerDB();
+    static ArmaDB armaDB = new ArmaDB();
 
-    public static boolean criarPersonagem()
+    static AreaDB areaDB = new AreaDB();
+
+    static InimigoDB inimigoDB = new InimigoDB();
+
+    public static void criarPersonagem() // Talvez alterar Atributos
     {
-        Scanner sc = new Scanner(System.in);
-        Player player;
-        System.out.println("Pressione 1 para criar um arqueiro");
-        System.out.println("Pressione 2 para criar um guerreiro");
-        System.out.println("Pressione 3 para criar um mago");
-        int op = sc.nextInt();
-        System.out.println("Entre com o nome do personagem");
-        sc.nextLine();
-        String nome = sc.nextLine();
-        System.out.println("das");
-        switch (op)
-        {
-            case 1:
-                player = new Arqueiro(nome);
-                playerDB.insertPlayer(player);
-                // Adiciona no banco
-                return true;
-            case 2:
-                player = new Guerreiro(nome);
-                // Adiciona no banco
-                return true;
-            case 3:
-                player = new Mago(nome);
-                // Adiciona no banco
-                return true;
-            default:
-                System.out.println("Número inválido");
-                return false;
-        }
+            String nome;
+            Scanner sc = new Scanner(System.in);
+            Player player;
+            System.out.println("Entre com o nome do personagem");
+            nome = sc.nextLine();
+            player = new Player(nome);
+            playerDB.insertPlayer(player);
     }
-    public static boolean escolherPersonagem()
+    public static void escolherPersonagem()
     {
-        // Select personagens
-//        for (int i = 0; i < ; i++)
-//        {
-//            System.out.println("Pressione " + (i+1) + " para acessar o personagem " + personagem(i));
-//        }
-        System.out.println("Pressione length+1 para voltar");
-        int op = sc.nextInt();
-        if (op==2) return false; // == Length+1
-        Player player=null; // Pegar banco
-        verPersonagem(player);
-        return true;
+        boolean flag = true;
+        int op = 0;
+        while (flag)
+        {
+            int[] ids = playerDB.researchAllPlayers();
+            System.out.println("Pressione o ID do player para acessar suas informações");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return; // == Length+1
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+        }
+            Player player = playerDB.researchPlayer(op); // Pegar banco
+            verPersonagem(player);
     }
 
     public static void verPersonagem(Player player)
     {
-        System.out.println("Pressione 1 para mostrar os status do personagem");
-        System.out.println("Pressione 2 para alterar o nome do personagem");
-        System.out.println("Pressione 3 para mostrar o inventário do personagem");
-        System.out.println("Pressione 4 para deletar o personagem");
-        System.out.println("Pressione 5 para forjar arma");
-        System.out.println("Pressione 6 para sair");
-        int op = sc.nextInt();
-        switch (op)
+        boolean flag = true;
+        while (flag)
         {
-            case 1:
-                player.printStatus();
-                break;
-            case 2:
-                System.out.println("Entre com o nome");
-                String nome = sc.nextLine();
-                player.mudaNome(nome);
-                break;
-            case 3:
-                player.mostraInventario();
-                break;
-            case 4:
-                Utilidades.deletar(player);
-                //sair
-                break;
-            case 5:
-                System.out.println("Entre com o nome da arma");
-                String nomeArma = sc.nextLine();
-                System.out.println("Entre com o dano da arma");
-                int dano = sc.nextInt();
-                player.criarArma(nomeArma,dano);
-            case 6:
-                //sair;
-                break;
-            default:
-                System.out.println("Número Inválido");
-                break;
+            System.out.println("Pressione 1 para mostrar os status do personagem");
+            System.out.println("Pressione 2 para alterar o nome do personagem");
+            System.out.println("Pressione 3 para mostrar o inventario do personagem");
+            System.out.println("Pressione 4 para deletar o personagem");
+            System.out.println("Pressione 5 para forjar arma");
+            System.out.println("Pressione 6 para sair");
+            int op = sc.nextInt();
+            switch (op)
+            {
+                case 1:
+                    player.printStatus();
+                    break;
+                case 2:
+                    System.out.println();
+                    System.out.println("Entre com o nome");
+                    sc.nextLine();
+                    String nome = sc.nextLine();
+                    player.setNome(nome);
+                    playerDB.mudaNomePlayer(player.getId(), nome);
+                    System.out.println();
+                    System.out.println("Nome mudado com sucesso");
+                    System.out.println();
+                    break;
+                case 3:
+                    Utilidades.escolherArma(player.getId());
+                    break;
+                case 4:
+                    playerDB.deletaPlayer(player.getId());
+                    System.out.println();
+                    System.out.println("Player apagado com sucesso");
+                    System.out.println();
+                    flag = false;
+                    break;
+                case 5:
+                    sc.nextLine();
+                    System.out.println("Entre com o nome da arma");
+                    String nomeArma = sc.nextLine();
+                    System.out.println("Entre com o dano da arma");
+                    int dano = sc.nextInt();
+                    Arma arma = new Arma(nomeArma, dano);
+                    System.out.println();
+                    armaDB.criarArma(arma, player.getId());
+                    System.out.println();
+                    break;
+                case 6:
+                    flag = false;
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("Numero Invalido");
+                    System.out.println();
+                    break;
+            }
         }
     }
 
-    public static void mostrarInimigos()
+    private static void escolherArma(int id)
     {
-        // Select Inimigos
+        boolean flag = true;
+        while (flag)
+        {
+            int[] ids = playerDB.researchInventario(id);
+            System.out.println();
+            System.out.println("Pressione o ID da arma para acessar suas informações");
+            System.out.println("Pressione 0 para voltar");
+            int op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return; // == Length+1
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+            else
+            {
+                Arma arma = armaDB.researchArma(op); // Pegar banco
+                verArma(arma);
+            }
+        }
     }
 
-    public static void mostrarAreas()
+    public static void verArma(Arma arma)
     {
-        // Select Áreas
+        boolean flag = true;
+        while (flag)
+        {
+            System.out.println();
+            System.out.println("Pressione 1 para mostrar os status da arma");
+            System.out.println("Pressione 2 para alterar o nome da arma");
+            if (arma.isIs_equipado()) System.out.println("Pressione 3 para desequipar a arma");
+            else System.out.println("Pressione 3 para equipar a arma");
+            System.out.println("Pressione 4 para dropar a arma");
+            System.out.println("Pressione 5 para sair");
+            int op = sc.nextInt();
+            System.out.println();
+            switch (op)
+            {
+                case 1:
+                    arma.printStatus();
+                    break;
+                case 2:
+                    System.out.println("Entre com o nome");
+                    sc.nextLine();
+                    System.out.println();
+                    String nome = sc.nextLine();
+                    arma.setNome(nome);
+                    armaDB.mudaNomeArma(arma.getId(), nome);
+                    System.out.println("Nome da arma mudado com sucesso");
+                    System.out.println();
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    armaDB.deletaArma(arma.getId());
+                    System.out.println();
+                    System.out.println("Arma dropada com sucesso");
+                    System.out.println();
+                    flag = false;
+                    break;
+                case 5:
+                    flag = false;
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("Numero Invalido");
+                    System.out.println();
+                    break;
+            }
+        }
+    }
+    public static void criarInimigo()
+    {
+        sc.nextLine();
+        System.out.println("Entre com o nome do inimigo");
+        String nomeInimigo = sc.nextLine();
+        System.out.println("Entre com o dano do inimigo");
+        int dano = sc.nextInt();
+        System.out.println("Entre com a vida do inimigo");
+        int vida = sc.nextInt();
+        System.out.println();
+        Inimigo inimigo = new Inimigo(nomeInimigo, dano,vida);
+        inimigoDB.criarInimigo(inimigo);
+        System.out.println("Inimigo criado com sucesso");
+        System.out.println();
     }
 
-    public static void deletar(Player player)
+    public static int escolherInimigo()
     {
-        // Tira do BD
+        boolean flag = true;
+        int op=0;
+        while (flag)
+        {
+            int ids[] = inimigoDB.researchAllInimigos();
+            System.out.println();
+            System.out.println("Pressione o ID do inimigo para acessar suas informações");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return op; // == Length+1
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+            else
+            {
+                Inimigo inimigo = inimigoDB.researchInimigo(op);
+                System.out.println();// Pegar banco
+                verInimigo(inimigo);
+            }
+        }
+        return op;
     }
 
+    private static void verInimigo(Inimigo inimigo)
+    {
+        boolean flag = true;
+        while (flag)
+        {
+            System.out.println("Pressione 1 para mostrar os status da inimigo");
+            System.out.println("Pressione 2 para alterar o nome da inimigo");
+            System.out.println("Pressione 3 para adicionar o inimigo a uma area");
+            System.out.println("Pressione 4 para remover o inimigo de uma area");
+            System.out.println("Pressione 5 para deletar o inimigo");
+            System.out.println("Pressione 6 para sair");
+            int areaId;
+            int op = sc.nextInt();
+            System.out.println();
+            switch (op)
+            {
+                case 1:
+                    inimigo.printStatus();
+                    System.out.println();
+                    areaDB.researchAreaInimigo(inimigo.getId());
+                    break;
+                case 2:
+                    System.out.println("Entre com o nome");
+                    sc.nextLine();
+                    System.out.println();
+                    String nome = sc.nextLine();
+                    inimigo.setNome(nome);
+                    inimigoDB.mudaNomeInimigo(inimigo.getId(),nome);
+                    System.out.println();
+                    System.out.println("Nome mudado com sucesso");
+                    System.out.println();
+                    break;
+                case 3:
+                    areaId = Utilidades.escolherAreaNesta(inimigo.getId());//mostrar somente as que ele não esta
+                    if (areaId==0) break;
+                    inimigoDB.addInimigoArea(inimigo.getId(),areaId);
+                    System.out.println();
+                    System.out.println("Inimigo adicionado na area");
+                    System.out.println();
+                    break;
+                case 4:
+                    areaId = Utilidades.escolherAreaEsta(inimigo.getId()); //mostrar somente as que ele esta
+                    if (areaId==0) break;
+                    inimigoDB.DeleteInimigoArea(inimigo.getId(),areaId);
+                    System.out.println();
+                    System.out.println("Inimigo deletado da area");
+                    System.out.println();
+                    break;
+                case 5:
+                    inimigoDB.deleteInimigo(inimigo.getId());
+                    System.out.println();
+                    System.out.println("Inimigo deletado");
+                    System.out.println();
+                    flag = false;
+                    break;
+                case 6:
+                    flag = false;
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("Numero Invalido");
+                    System.out.println();
+                    break;
+            }
+        }
+    }
+
+    private static int escolherAreaEsta(int id)
+    {
+        boolean flag = true;
+        int op = 0;
+        while (flag)
+        {
+            int[] ids = areaDB.researchAllAreasEsta(id);
+            System.out.println();
+            System.out.println("Pressione o ID da area para adicionar o inimigo a essa area");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return op;
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+        }
+        return op;
+    }
+
+    private static int escolherAreaNesta(int id)
+    {
+        boolean flag = true;
+        int op = 0;
+        while (flag)
+        {
+            int[] ids = areaDB.researchAllAreasNEsta(id);
+            System.out.println();
+            System.out.println("Pressione o ID da area para adicionar o inimigo a essa area");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return op;
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+        }
+        return op;
+    }
+
+    public static int escolherArea()
+    {
+        boolean flag = true;
+        int op = 0;
+        while (flag)
+        {
+            int[] ids = areaDB.researchAllAreas();
+            System.out.println();
+            System.out.println("Pressione o ID da area para adicionar o inimigo a essa area");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return op;
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+        }
+        return op;
+    }
+
+    public static void criarArea()
+    {
+        sc.nextLine();
+        System.out.println();
+        System.out.println("Entre com o nome da area");
+        String nomeArea = sc.nextLine();
+        System.out.println();
+        Area area = new Area(nomeArea);
+        areaDB.criarArea(area);
+        System.out.println("Area criada");
+        System.out.println();
+    }
+
+    public static void verArea(Area area)
+    {
+        boolean flag = true;
+        while (flag)
+        {
+            System.out.println();
+            System.out.println("Pressione 1 para mostrar os status da area");
+            System.out.println("Pressione 2 para alterar o nome da area");
+            System.out.println("Pressione 3 para adicionar um inimigo a area");
+            System.out.println("Pressione 4 para remover um inimigo da area");
+            System.out.println("Pressione 5 para deletar a area");
+            System.out.println("Pressione 6 para sair");
+            int inimigoId;
+            int op = sc.nextInt();
+            System.out.println();
+            switch (op)
+            {
+                case 1:
+                    area.printStatus();
+                    System.out.println();
+                    break;
+                case 2:
+                    System.out.println("Entre com o nome");
+                    sc.nextLine();
+                    String nome = sc.nextLine();
+                    System.out.println();
+                    area.setNome(nome);
+                    areaDB.mudaNomeArea(area.getId(),nome);
+                    System.out.println("Nome da area mudado");
+                    break;
+                case 3:
+                    inimigoId = Utilidades.escolherInimigoNesta(area.getId());
+                    if (inimigoId==0) break;
+                    inimigoDB.addInimigoArea(inimigoId,area.getId());
+                    System.out.println();
+                    System.out.println("Inimigo adicionado na area");
+                    System.out.println();
+                    break;
+                case 4:
+                    inimigoId = Utilidades.escolherInimigoEsta(area.getId()); //mostrar somente as que ele esta
+                    inimigoDB.DeleteInimigoArea(inimigoId,area.getId());
+                    System.out.println();
+                    System.out.println("Inimigo deletado da area");
+                    System.out.println();
+                    break;
+                case 5:
+                    areaDB.deleteArea(area.getId());
+                    System.out.println();
+                    System.out.println("area deletada");
+                    System.out.println();
+                    break;
+                case 6:
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Numero Invalido");
+                    System.out.println();
+                    break;
+            }
+        }
+    }
+
+    private static int escolherInimigoEsta(int id)
+    {
+        boolean flag = true;
+        int op = 0;
+        while (flag)
+        {
+            int[] ids = inimigoDB.researchAllInimigosEsta(id);
+            System.out.println();
+            System.out.println("Pressione o ID da area para adicionar o inimigo a essa area");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return op;
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+        }
+        return op;
+    }
+
+    private static int escolherInimigoNesta(int id)
+    {
+        boolean flag = true;
+        int op = 0;
+        while (flag)
+        {
+            int[] ids = inimigoDB.researchAllInimigosNEsta(id);
+            System.out.println();
+            System.out.println("Pressione o ID da area para adicionar o inimigo a essa area");
+            System.out.println("Pressione 0 para voltar");
+            op = sc.nextInt();
+            System.out.println();
+            boolean a = false;
+            if (op == 0) return op;
+            for (int i = 0; i < ids.length; i++)
+            {
+                if (op == ids[i])
+                {
+                    flag = false;
+                    a = true;
+                    break;
+                }
+            }
+            if (!a) System.out.println("Numero invalido");
+        }
+        return op;
+    }
 }

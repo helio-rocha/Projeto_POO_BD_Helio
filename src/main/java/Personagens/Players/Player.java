@@ -4,24 +4,43 @@ import Armas.Arma;
 
 import java.util.List;
 
-public abstract class Player
+public class Player
 {
     protected int id;
     protected String nome;
-    protected int danoBase;
     protected int vida;
     protected int danoTotal;
+    protected int danoBase;
 
     static int vidaBase;
 
     protected int vitalidade;
     protected int forca;
+    protected int sabedoria;
     protected int inteligencia;
     protected int destreza;
-    protected int sabedoria;
     protected Arma arma;
 
     protected List inventario;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public Player(int id, String nome, int vida, int danoTotal, int danoBase, int vitalidade, int forca, int sabedoria, int inteligencia, int destreza)
+    {
+        this.id = id;
+        this.nome = nome;
+        this.vida = vida;
+        this.danoTotal = danoTotal;
+        this.danoBase = danoBase;
+        this.vitalidade = vitalidade;
+        this.forca = forca;
+        this.sabedoria = sabedoria;
+        this.inteligencia = inteligencia;
+        this.destreza = destreza;
+    }
 
     public Player(String nome)
     {
@@ -40,6 +59,11 @@ public abstract class Player
         danoTotal = danoBase + arma.getDano();
     }
 
+    public Player()
+    {
+
+    }
+
     public int getVida()
     {
         return vida;
@@ -53,6 +77,11 @@ public abstract class Player
     public String getNome()
     {
         return nome;
+    }
+
+    public void setNome(String nome)
+    {
+        this.nome = nome;
     }
 
     public int getDanoBase()
@@ -107,13 +136,14 @@ public abstract class Player
 
     public void printStatus()
     {
+        System.out.println();
         System.out.println("Nome: " + nome);
         System.out.println("Vida: " + vida);
         System.out.println("Dano base: " + danoBase);
         System.out.println("Dano Total: " + danoTotal);
 
         System.out.println("Vitalidade: " + vitalidade);
-        System.out.println("inteligência: " + inteligencia);
+        System.out.println("inteligencia: " + inteligencia);
         System.out.println("Forca: " + forca);
         System.out.println("Destreza: " + destreza);
         System.out.println("Sabedoria: " + sabedoria);
@@ -124,42 +154,12 @@ public abstract class Player
             System.out.println("Nome da arma: " + arma.getNome());
             System.out.println("Dano da arma: " + arma.getDano());
         }
+        System.out.println();
     }
 
     public void mudaNome(String nome)
     {
         this.nome = nome;
-    }
-
-    public void mostraInventario()
-    {
-        // Busca no BD
-        System.out.println("Se deseja equipar uma arma aperte o seu número, caso contrário aperte 0 para sair");
-    }
-
-    public void criarArma(String nome,int dano)
-    {
-        Arma arma = new Arma(nome, dano);
-        this.addInventario(arma);
-    }
-
-    public void addInventario(Arma arma)
-    {
-        // adicionar BD
-        // adiciona inventário
-    }
-
-    public void trocarArma(Arma arma)
-    {
-        this.addInventario(this.arma);
-        this.arma = arma;
-        this.removeInventario(arma);
-    }
-
-    public void removeInventario(Arma arma)
-    {
-        // Remove lista
-        // Remove BD
     }
 
 }

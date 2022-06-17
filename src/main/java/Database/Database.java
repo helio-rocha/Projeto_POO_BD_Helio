@@ -20,7 +20,7 @@ public abstract class Database {
     public void connect(){
         try {
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Conexão feita com sucesso: "+ connection);
+            //System.out.println("Conexão feita com sucesso: "+ connection);
         }catch (SQLException e){
             System.out.println("Erro de conexão: " + e.getMessage());
         }
