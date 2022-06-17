@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53d5b48a-4301-4042-a8c6-7e803eceefce" name="Changes" comment="Versão funcional faltando ajustes">
+    <list default="true" id="53d5b48a-4301-4042-a8c6-7e803eceefce" name="Changes" comment="Ajustes básicos de modificadores de acesso">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Areas/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Areas/Area.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Armas/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Armas/Arma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Database/ArmaDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Database/ArmaDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Database/InimigoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Database/InimigoDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Database/PlayerDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Database/PlayerDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Inimigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Inimigos/Inimigo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Personagens/Players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personagens/Players/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utilidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilidades.java" afterDir="false" />
     </list>
@@ -103,7 +99,7 @@
       <workItem from="1655420646178" duration="4543000" />
       <workItem from="1655434035106" duration="496000" />
       <workItem from="1655470853784" duration="5181000" />
-      <workItem from="1655485646560" duration="11341000" />
+      <workItem from="1655485646560" duration="14905000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1655166071667</created>
@@ -140,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655495731391</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajustes básicos de modificadores de acesso">
+      <created>1655499495229</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655499495229</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,6 +163,7 @@
     <MESSAGE value="Criação de alguns métodos e atributos da maioria das classes" />
     <MESSAGE value="Mudança da JDK de 11 para 18" />
     <MESSAGE value="Versão funcional faltando ajustes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Versão funcional faltando ajustes" />
+    <MESSAGE value="Ajustes básicos de modificadores de acesso" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes básicos de modificadores de acesso" />
   </component>
 </project>

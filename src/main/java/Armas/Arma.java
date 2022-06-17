@@ -62,4 +62,9 @@ public class Arma
     {
         return is_equipado;
     }
+
+    public void setIs_equipado(boolean is_equipado)
+    {
+        this.is_equipado = is_equipado;
+    }
 }

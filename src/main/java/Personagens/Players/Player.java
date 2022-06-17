@@ -2,7 +2,6 @@ package Personagens.Players;
 
 import Armas.Arma;
 
-import java.util.List;
 
 public class Player
 {
@@ -10,7 +9,7 @@ public class Player
     private String nome;
     private int vida;
     private int danoTotal;
-    private int danoBase;
+    private final int danoBase = 50;
 
     static int vidaBase;
 
@@ -21,25 +20,24 @@ public class Player
     private int destreza;
     private Arma arma;
 
-    private List inventario;
 
     public int getId()
     {
         return id;
     }
 
-    public Player(int id, String nome, int vida, int danoTotal, int danoBase, int vitalidade, int forca, int sabedoria, int inteligencia, int destreza)
+    public Player(int id, String nome, int vida, int danoTotal, int danoBase, int vitalidade, int forca, int sabedoria, int inteligencia, int destreza,Arma arma)
     {
         this.id = id;
         this.nome = nome;
         this.vida = vida;
         this.danoTotal = danoTotal;
-        this.danoBase = danoBase;
         this.vitalidade = vitalidade;
         this.forca = forca;
         this.sabedoria = sabedoria;
         this.inteligencia = inteligencia;
         this.destreza = destreza;
+        this.arma = arma;
     }
 
     public Player(String nome)
@@ -54,9 +52,7 @@ public class Player
 
         vida = vidaBase + 10*vitalidade;
 
-        arma = new Arma("Sem arma", 0);
-
-        danoTotal = danoBase + arma.getDano();
+        danoTotal = danoBase;
     }
 
     public Player()
@@ -120,10 +116,6 @@ public class Player
         return arma;
     }
 
-    public List getInventario()
-    {
-        return inventario;
-    }
 
     public void printStatus()
     {
@@ -145,7 +137,15 @@ public class Player
             System.out.println("Nome da arma: " + arma.getNome());
             System.out.println("Dano da arma: " + arma.getDano());
         }
+        else
+        {
+            System.out.println("Sem arma");
+        }
         System.out.println();
     }
 
+    public void setArma(Arma arma)
+    {
+        this.arma = arma;
+    }
 }

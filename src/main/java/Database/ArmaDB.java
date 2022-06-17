@@ -6,16 +6,14 @@ import java.sql.SQLException;
 
 public class ArmaDB extends Database
 {
-    static int cont = 1;
-
     public void criarArma(Arma arma,int playerI)
     {
         connect();
         String sql = "INSERT INTO arma VALUES(?,?,?,false,?)";
         try {
             pst = connection.prepareStatement(sql);
-
-            pst.setString(1, String.valueOf(cont));      // concatena nome na primeira ? do comando
+            int id = researchId()+1;
+            pst.setString(1, String.valueOf(id));      // concatena nome na primeira ? do comando
             pst.setString(2, arma.getNome());      // concatena nome na primeira ? do comando
             pst.setString(3, String.valueOf(arma.getDano()));      // concatena nome na primeira ? do comando
             pst.setString(4, String.valueOf(playerI));      // concatena nome na primeira ? do comando
@@ -34,6 +32,31 @@ public class ArmaDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
+    }
+
+    private int researchId()
+    {
+        connect();
+        int id = 0;
+        String sql = "SELECT max(id) FROM arma";
+        try{
+            statement = connection.createStatement();
+            result = statement.executeQuery(sql);
+
+            while(result.next()){
+                id = result.getInt("max(id)");
+            }
+        }catch (SQLException e){
+            System.out.println("Erro de operação: " + e.getMessage());
+        }finally {
+            try {
+                connection.close();
+                result.close();
+            }catch (SQLException e){
+                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+        return id;
     }
 
     public void mudaNomeArma(int id, String nome)
@@ -110,6 +133,50 @@ public class ArmaDB extends Database
                 connection.close();
                 pst.close();
             }catch (SQLException e){
+                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+    }
+
+    public void desequipaArma(int id)
+    {
+        connect();
+        String sql = "UPDATE arma SET is_equipado = false WHERE id=?";
+        try{
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.execute();
+            check = true;
+        }catch (SQLException e){
+            System.out.println("Erro de operação: " + e.getMessage());
+            check = false;
+        }finally {
+            try {
+                connection.close();
+                pst.close();
+            }catch (SQLException e) {
+                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+    }
+
+    public void equipaArma(int id)
+    {
+        connect();
+        String sql = "UPDATE arma SET is_equipado = true WHERE id=?";
+        try{
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.execute();
+            check = true;
+        }catch (SQLException e){
+            System.out.println("Erro de operação: " + e.getMessage());
+            check = false;
+        }finally {
+            try {
+                connection.close();
+                pst.close();
+            }catch (SQLException e) {
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }

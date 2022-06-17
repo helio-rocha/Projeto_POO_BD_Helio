@@ -84,7 +84,7 @@ public class Utilidades
                     System.out.println("Nome mudado com sucesso");
                     System.out.println();
                 }
-                case 3 -> Utilidades.escolherArma(player.getId());
+                case 3 -> Utilidades.escolherArma(player);
                 case 4 ->
                 {
                     playerDB.deletaPlayer(player.getId());
@@ -116,12 +116,12 @@ public class Utilidades
         }
     }
 
-    public static void escolherArma(int id)
+    public static void escolherArma(Player player)
     {
         boolean flag = true;
         while (flag)
         {
-            int[] ids = playerDB.researchInventario(id);
+            int[] ids = playerDB.researchInventario(player.getId());
             System.out.println();
             System.out.println("Pressione o ID da arma para acessar suas informações");
             System.out.println("Pressione 0 para voltar");
@@ -142,12 +142,12 @@ public class Utilidades
             else
             {
                 Arma arma = armaDB.researchArma(op); // Pegar banco
-                verArma(arma);
+                verArma(arma,player);
             }
         }
     }
 
-    private static void verArma(Arma arma)
+    private static void verArma(Arma arma, Player player)
     {
         boolean flag = true;
         while (flag)
@@ -177,7 +177,22 @@ public class Utilidades
                     System.out.println();
                     break;
                 case 3:
-
+                    if (arma.isIs_equipado())
+                    {
+                        arma.setIs_equipado(false);
+                        armaDB.desequipaArma(arma.getId());
+                        player.setArma(null);
+                    }
+                    else
+                    {
+                        if (player.getArma() != null)
+                        {
+                            armaDB.desequipaArma(player.getArma().getId());
+                        }
+                        player.setArma(arma);
+                        armaDB.equipaArma(arma.getId());
+                        arma.setIs_equipado(true);
+                    }
                     break;
                 case 4:
                     armaDB.deletaArma(arma.getId());
