@@ -1,22 +1,12 @@
 import Areas.Area;
-import Armas.Arma;
 import Database.AreaDB;
-import Database.ArmaDB;
-import Database.InimigoDB;
-import Database.PlayerDB;
-import Personagens.Inimigos.Inimigo;
-import Personagens.Players.Player;
 
 import java.util.Scanner;
 
 public class Main
 {
-    static PlayerDB playerDB = new PlayerDB();
-    static ArmaDB armaDB = new ArmaDB();
-
     static AreaDB areaDB = new AreaDB();
 
-    static InimigoDB inimigoDB = new InimigoDB();
     public static void main(String[] args)
     {
         boolean flag = true;
@@ -32,35 +22,26 @@ public class Main
             System.out.println("Pressione 6 ver as areas existentes");
             System.out.println("Pressione 7 para sair");
             int op = sc.nextInt();
-            Player player = null;
             switch (op)
             {
-                case 1:
+                case 1 ->
+                {
                     Utilidades.criarPersonagem();
                     System.out.println("Personagem Criado");
                     System.out.println();
-                    break;
-                case 2:
-                    Utilidades.escolherPersonagem(); // Banco de dados
-                    break;
-                case 3:
-                    Utilidades.criarInimigo();
-                    break;
-                case 4:
-                    Utilidades.escolherInimigo();
-                    break;
-                case 5:
-                    Utilidades.criarArea();
-                    break;
-                case 6:
+                }
+                case 2 -> Utilidades.escolherPersonagem(); // Banco de dados
+                case 3 -> Utilidades.criarInimigo();
+                case 4 -> Utilidades.escolherInimigo();
+                case 5 -> Utilidades.criarArea();
+                case 6 ->
+                {
                     int id = Utilidades.escolherArea();
-                    if (id==0) break;
+                    if (id == 0) break;
                     Area area = areaDB.researchArea(id); // Pegar banco
                     Utilidades.verArea(area);
-                    break;
-                case 7:
-                    flag = false;
-                    break;
+                }
+                case 7 -> flag = false;
             }
         }
     }

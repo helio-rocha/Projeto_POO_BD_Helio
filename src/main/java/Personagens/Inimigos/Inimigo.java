@@ -2,10 +2,10 @@ package Personagens.Inimigos;
 
 public class Inimigo
 {
-    protected int id;
+    private int id;
     public String nome;
-    protected int dano;
-    protected int vida;
+    private int dano;
+    private int vida;
 
     public Inimigo()
     {
@@ -42,24 +42,10 @@ public class Inimigo
         return dano;
     }
 
-    public void setVida(int vida)
-    {
-        this.vida = vida;
-    }
-
-    public void setDano(int dano)
-    {
-        this.dano = dano;
-    }
 
     public int getId()
     {
         return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
     }
 
     public void setNome(String nome)

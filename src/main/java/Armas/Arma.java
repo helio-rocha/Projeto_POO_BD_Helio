@@ -2,11 +2,11 @@ package Armas;
 
 public class Arma
 {
-    protected int id;
-    protected String nome;
+    private int id;
+    private String nome;
 
-    protected int dano;
-    protected boolean is_equipado;
+    private int dano;
+    private boolean is_equipado;
 
     public int getDano()
     {

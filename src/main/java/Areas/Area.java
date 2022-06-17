@@ -4,9 +4,9 @@ import Personagens.Inimigos.Inimigo;
 
 public class Area
 {
-    public int id;
-    public String nome;
-    public Inimigo[] inimigos;
+    private int id;
+    private String nome;
+    private Inimigo[] inimigos;
 
     public Area(String nome)
     {
@@ -22,11 +22,6 @@ public class Area
     public int getId()
     {
         return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
     }
 
     public String getNome()

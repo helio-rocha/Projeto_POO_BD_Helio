@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class PlayerDB extends Database
 {
-    public boolean insertPlayer(Player player){
+    public void insertPlayer(Player player){
         connect();
         String sql = "INSERT INTO player VALUES(?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -38,7 +38,6 @@ public class PlayerDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 
     public int[] researchAllPlayers(){
@@ -118,7 +117,7 @@ public class PlayerDB extends Database
         return player;
     }
 
-    public boolean mudaNomePlayer(int id, String nome)
+    public void mudaNomePlayer(int id, String nome)
     {
         connect();
         String sql = "UPDATE player SET nome=? WHERE id=?";
@@ -139,7 +138,6 @@ public class PlayerDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 
     public int[] researchInventario(int id)
@@ -184,7 +182,7 @@ public class PlayerDB extends Database
         return ids;
     }
 
-    public boolean deletaPlayer(int id)
+    public void deletaPlayer(int id)
     {
         connect();
         String sql = "DELETE FROM player WHERE id=?";
@@ -204,14 +202,12 @@ public class PlayerDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 
     public int researchId()
     {
         connect();
         int id = 0;
-        Player player = null;
         String sql = "SELECT max(id) FROM player";
         try{
             statement = connection.createStatement();

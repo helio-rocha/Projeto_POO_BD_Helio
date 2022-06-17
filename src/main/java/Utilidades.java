@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 public class Utilidades
 {
-    static Scanner sc = new Scanner(System.in);
-    static PlayerDB playerDB = new PlayerDB();
-    static ArmaDB armaDB = new ArmaDB();
+    private static Scanner sc = new Scanner(System.in);
+    private static PlayerDB playerDB = new PlayerDB();
+    private static ArmaDB armaDB = new ArmaDB();
 
-    static AreaDB areaDB = new AreaDB();
+    private static AreaDB areaDB = new AreaDB();
 
-    static InimigoDB inimigoDB = new InimigoDB();
+    private static InimigoDB inimigoDB = new InimigoDB();
 
     public static void criarPersonagem() // Talvez alterar Atributos
     {
@@ -42,9 +42,9 @@ public class Utilidades
             System.out.println();
             boolean a = false;
             if (op == 0) return; // == Length+1
-            for (int i = 0; i < ids.length; i++)
+            for (int id : ids)
             {
-                if (op == ids[i])
+                if (op == id)
                 {
                     flag = false;
                     a = true;
@@ -71,10 +71,9 @@ public class Utilidades
             int op = sc.nextInt();
             switch (op)
             {
-                case 1:
-                    player.printStatus();
-                    break;
-                case 2:
+                case 1 -> player.printStatus();
+                case 2 ->
+                {
                     System.out.println();
                     System.out.println("Entre com o nome");
                     sc.nextLine();
@@ -84,18 +83,18 @@ public class Utilidades
                     System.out.println();
                     System.out.println("Nome mudado com sucesso");
                     System.out.println();
-                    break;
-                case 3:
-                    Utilidades.escolherArma(player.getId());
-                    break;
-                case 4:
+                }
+                case 3 -> Utilidades.escolherArma(player.getId());
+                case 4 ->
+                {
                     playerDB.deletaPlayer(player.getId());
                     System.out.println();
                     System.out.println("Player apagado com sucesso");
                     System.out.println();
                     flag = false;
-                    break;
-                case 5:
+                }
+                case 5 ->
+                {
                     sc.nextLine();
                     System.out.println("Entre com o nome da arma");
                     String nomeArma = sc.nextLine();
@@ -105,20 +104,19 @@ public class Utilidades
                     System.out.println();
                     armaDB.criarArma(arma, player.getId());
                     System.out.println();
-                    break;
-                case 6:
-                    flag = false;
-                    break;
-                default:
+                }
+                case 6 -> flag = false;
+                default ->
+                {
                     System.out.println();
                     System.out.println("Numero Invalido");
                     System.out.println();
-                    break;
+                }
             }
         }
     }
 
-    private static void escolherArma(int id)
+    public static void escolherArma(int id)
     {
         boolean flag = true;
         while (flag)
@@ -131,9 +129,9 @@ public class Utilidades
             System.out.println();
             boolean a = false;
             if (op == 0) return; // == Length+1
-            for (int i = 0; i < ids.length; i++)
+            for (int j : ids)
             {
-                if (op == ids[i])
+                if (op == j)
                 {
                     flag = false;
                     a = true;
@@ -149,7 +147,7 @@ public class Utilidades
         }
     }
 
-    public static void verArma(Arma arma)
+    private static void verArma(Arma arma)
     {
         boolean flag = true;
         while (flag)
@@ -215,23 +213,23 @@ public class Utilidades
         System.out.println();
     }
 
-    public static int escolherInimigo()
+    public static void escolherInimigo()
     {
         boolean flag = true;
-        int op=0;
+        int op;
         while (flag)
         {
-            int ids[] = inimigoDB.researchAllInimigos();
+            int[] ids = inimigoDB.researchAllInimigos();
             System.out.println();
             System.out.println("Pressione o ID do inimigo para acessar suas informações");
             System.out.println("Pressione 0 para voltar");
             op = sc.nextInt();
             System.out.println();
             boolean a = false;
-            if (op == 0) return op; // == Length+1
-            for (int i = 0; i < ids.length; i++)
+            if (op == 0) return; // == Length+1
+            for (int id : ids)
             {
-                if (op == ids[i])
+                if (op == id)
                 {
                     flag = false;
                     a = true;
@@ -246,7 +244,6 @@ public class Utilidades
                 verInimigo(inimigo);
             }
         }
-        return op;
     }
 
     private static void verInimigo(Inimigo inimigo)
@@ -265,53 +262,57 @@ public class Utilidades
             System.out.println();
             switch (op)
             {
-                case 1:
+                case 1 ->
+                {
                     inimigo.printStatus();
                     System.out.println();
                     areaDB.researchAreaInimigo(inimigo.getId());
-                    break;
-                case 2:
+                }
+                case 2 ->
+                {
                     System.out.println("Entre com o nome");
                     sc.nextLine();
                     System.out.println();
                     String nome = sc.nextLine();
                     inimigo.setNome(nome);
-                    inimigoDB.mudaNomeInimigo(inimigo.getId(),nome);
+                    inimigoDB.mudaNomeInimigo(inimigo.getId(), nome);
                     System.out.println();
                     System.out.println("Nome mudado com sucesso");
                     System.out.println();
-                    break;
-                case 3:
+                }
+                case 3 ->
+                {
                     areaId = Utilidades.escolherAreaNesta(inimigo.getId());//mostrar somente as que ele não esta
-                    if (areaId==0) break;
-                    inimigoDB.addInimigoArea(inimigo.getId(),areaId);
+                    if (areaId == 0) break;
+                    inimigoDB.addInimigoArea(inimigo.getId(), areaId);
                     System.out.println();
                     System.out.println("Inimigo adicionado na area");
                     System.out.println();
-                    break;
-                case 4:
+                }
+                case 4 ->
+                {
                     areaId = Utilidades.escolherAreaEsta(inimigo.getId()); //mostrar somente as que ele esta
-                    if (areaId==0) break;
-                    inimigoDB.DeleteInimigoArea(inimigo.getId(),areaId);
+                    if (areaId == 0) break;
+                    inimigoDB.DeleteInimigoArea(inimigo.getId(), areaId);
                     System.out.println();
                     System.out.println("Inimigo deletado da area");
                     System.out.println();
-                    break;
-                case 5:
+                }
+                case 5 ->
+                {
                     inimigoDB.deleteInimigo(inimigo.getId());
                     System.out.println();
                     System.out.println("Inimigo deletado");
                     System.out.println();
                     flag = false;
-                    break;
-                case 6:
-                    flag = false;
-                    break;
-                default:
+                }
+                case 6 -> flag = false;
+                default ->
+                {
                     System.out.println();
                     System.out.println("Numero Invalido");
                     System.out.println();
-                    break;
+                }
             }
         }
     }
@@ -330,9 +331,9 @@ public class Utilidades
             System.out.println();
             boolean a = false;
             if (op == 0) return op;
-            for (int i = 0; i < ids.length; i++)
+            for (int j : ids)
             {
-                if (op == ids[i])
+                if (op == j)
                 {
                     flag = false;
                     a = true;
@@ -358,9 +359,9 @@ public class Utilidades
             System.out.println();
             boolean a = false;
             if (op == 0) return op;
-            for (int i = 0; i < ids.length; i++)
+            for (int j : ids)
             {
-                if (op == ids[i])
+                if (op == j)
                 {
                     flag = false;
                     a = true;
@@ -386,9 +387,9 @@ public class Utilidades
             System.out.println();
             boolean a = false;
             if (op == 0) return op;
-            for (int i = 0; i < ids.length; i++)
+            for (int id : ids)
             {
-                if (op == ids[i])
+                if (op == id)
                 {
                     flag = false;
                     a = true;
@@ -430,47 +431,51 @@ public class Utilidades
             System.out.println();
             switch (op)
             {
-                case 1:
+                case 1 ->
+                {
                     area.printStatus();
                     System.out.println();
-                    break;
-                case 2:
+                }
+                case 2 ->
+                {
                     System.out.println("Entre com o nome");
                     sc.nextLine();
                     String nome = sc.nextLine();
                     System.out.println();
                     area.setNome(nome);
-                    areaDB.mudaNomeArea(area.getId(),nome);
+                    areaDB.mudaNomeArea(area.getId(), nome);
                     System.out.println("Nome da area mudado");
-                    break;
-                case 3:
+                }
+                case 3 ->
+                {
                     inimigoId = Utilidades.escolherInimigoNesta(area.getId());
-                    if (inimigoId==0) break;
-                    inimigoDB.addInimigoArea(inimigoId,area.getId());
+                    if (inimigoId == 0) break;
+                    inimigoDB.addInimigoArea(inimigoId, area.getId());
                     System.out.println();
                     System.out.println("Inimigo adicionado na area");
                     System.out.println();
-                    break;
-                case 4:
+                }
+                case 4 ->
+                {
                     inimigoId = Utilidades.escolherInimigoEsta(area.getId()); //mostrar somente as que ele esta
-                    inimigoDB.DeleteInimigoArea(inimigoId,area.getId());
+                    inimigoDB.DeleteInimigoArea(inimigoId, area.getId());
                     System.out.println();
                     System.out.println("Inimigo deletado da area");
                     System.out.println();
-                    break;
-                case 5:
+                }
+                case 5 ->
+                {
                     areaDB.deleteArea(area.getId());
                     System.out.println();
                     System.out.println("area deletada");
                     System.out.println();
-                    break;
-                case 6:
-                    flag = false;
-                    break;
-                default:
+                }
+                case 6 -> flag = false;
+                default ->
+                {
                     System.out.println("Numero Invalido");
                     System.out.println();
-                    break;
+                }
             }
         }
     }
@@ -489,9 +494,9 @@ public class Utilidades
             System.out.println();
             boolean a = false;
             if (op == 0) return op;
-            for (int i = 0; i < ids.length; i++)
+            for (int j : ids)
             {
-                if (op == ids[i])
+                if (op == j)
                 {
                     flag = false;
                     a = true;
@@ -516,10 +521,9 @@ public class Utilidades
             op = sc.nextInt();
             System.out.println();
             boolean a = false;
-            if (op == 0) return op;
-            for (int i = 0; i < ids.length; i++)
+            for (int j : ids)
             {
-                if (op == ids[i])
+                if (op == j || op == 0)
                 {
                     flag = false;
                     a = true;

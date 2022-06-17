@@ -6,22 +6,22 @@ import java.util.List;
 
 public class Player
 {
-    protected int id;
-    protected String nome;
-    protected int vida;
-    protected int danoTotal;
-    protected int danoBase;
+    private int id;
+    private String nome;
+    private int vida;
+    private int danoTotal;
+    private int danoBase;
 
     static int vidaBase;
 
-    protected int vitalidade;
-    protected int forca;
-    protected int sabedoria;
-    protected int inteligencia;
-    protected int destreza;
-    protected Arma arma;
+    private int vitalidade;
+    private int forca;
+    private int sabedoria;
+    private int inteligencia;
+    private int destreza;
+    private Arma arma;
 
-    protected List inventario;
+    private List inventario;
 
     public int getId()
     {
@@ -69,11 +69,6 @@ public class Player
         return vida;
     }
 
-    public void setVida(int vida)
-    {
-        this.vida = vida;
-    }
-
     public String getNome()
     {
         return nome;
@@ -94,10 +89,6 @@ public class Player
         return danoTotal;
     }
 
-    public static int getVidaBase()
-    {
-        return vidaBase;
-    }
 
     public int getVitalidade()
     {
@@ -155,11 +146,6 @@ public class Player
             System.out.println("Dano da arma: " + arma.getDano());
         }
         System.out.println();
-    }
-
-    public void mudaNome(String nome)
-    {
-        this.nome = nome;
     }
 
 }

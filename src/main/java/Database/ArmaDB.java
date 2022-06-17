@@ -6,11 +6,9 @@ import java.sql.SQLException;
 
 public class ArmaDB extends Database
 {
-    static ArmaDB armaDB = new ArmaDB();
-
     static int cont = 1;
 
-    public boolean criarArma(Arma arma,int playerI)
+    public void criarArma(Arma arma,int playerI)
     {
         connect();
         String sql = "INSERT INTO arma VALUES(?,?,?,false,?)";
@@ -36,10 +34,9 @@ public class ArmaDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 
-    public boolean mudaNomeArma(int id, String nome)
+    public void mudaNomeArma(int id, String nome)
     {
         connect();
         String sql = "UPDATE arma SET nome=? WHERE id=?";
@@ -60,7 +57,6 @@ public class ArmaDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 
     public Arma researchArma(int id)
@@ -97,7 +93,7 @@ public class ArmaDB extends Database
         return arma;
     }
 
-    public boolean deletaArma(int id)
+    public void deletaArma(int id)
     {
         connect();
         String sql = "DELETE FROM arma WHERE id=?";
@@ -117,6 +113,5 @@ public class ArmaDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 }

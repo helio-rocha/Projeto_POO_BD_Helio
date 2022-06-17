@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class InimigoDB extends Database
 {
-    public boolean criarInimigo(Inimigo inimigo)
+    public void criarInimigo(Inimigo inimigo)
     {
         connect();
         String sql = "INSERT INTO inimigo VALUES(?,?,?,?)";
@@ -32,7 +32,6 @@ public class InimigoDB extends Database
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());
             }
         }
-        return check;
     }
 
     public int[] researchAllInimigos()
