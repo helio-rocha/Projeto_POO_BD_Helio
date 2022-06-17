@@ -21,7 +21,7 @@ public class InimigoDB extends Database
             check = true;
 
         } catch (SQLException e) {
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
             check = false;
         }
         finally {
@@ -29,7 +29,7 @@ public class InimigoDB extends Database
                 connection.close();
                 pst.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
     }
@@ -54,14 +54,14 @@ public class InimigoDB extends Database
                 System.out.println("------------------------------");
             }
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
         }finally {
             try {
                 connection.close();
                 statement.close();
                 result.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
         return ids;
@@ -90,13 +90,13 @@ public class InimigoDB extends Database
                 inimigo = new Inimigo(inimigoID,inimigoNome,inimigoDano,inimigoVida);
             }
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
         }finally {
             try {
                 connection.close();
                 result.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
         return inimigo;
@@ -113,14 +113,14 @@ public class InimigoDB extends Database
             pst.execute();
             check = true;
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
             check = false;
         }finally {
             try {
                 connection.close();
                 pst.close();
             }catch (SQLException e) {
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
     }
@@ -137,7 +137,7 @@ public class InimigoDB extends Database
             check = true;
 
         } catch (SQLException e) {
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
             check = false;
         }
         finally {
@@ -145,7 +145,7 @@ public class InimigoDB extends Database
                 connection.close();
                 pst.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
     }
@@ -161,14 +161,14 @@ public class InimigoDB extends Database
             pst.execute();
             check = true;
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
             check = false;
         }finally {
             try {
                 connection.close();
                 pst.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
     }
@@ -176,21 +176,25 @@ public class InimigoDB extends Database
     public void deleteInimigo(int id)
     {
         connect();
-        String sql = "DELETE FROM inimigo WHERE id=?";
+        String sql = "DELETE FROM inimigo_esta_area WHERE inimigo_id=?";
         try{
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.execute();
+            sql = "DELETE FROM inimigo WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             pst.execute();
             check = true;
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
             check = false;
         }finally {
             try {
                 connection.close();
                 pst.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
     }
@@ -208,13 +212,13 @@ public class InimigoDB extends Database
                 id = result.getInt("max(id)");
             }
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
         }finally {
             try {
                 connection.close();
                 result.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
         return id;
@@ -264,13 +268,13 @@ public class InimigoDB extends Database
                 }
             }
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
         }finally {
             try {
                 connection.close();
                 result.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
         return ids;
@@ -320,13 +324,13 @@ public class InimigoDB extends Database
                 }
             }
         }catch (SQLException e){
-            System.out.println("Erro de operação: " + e.getMessage());
+            System.out.println("Erro de operacao: " + e.getMessage());
         }finally {
             try {
                 connection.close();
                 result.close();
             }catch (SQLException e){
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+                System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
         return ids;

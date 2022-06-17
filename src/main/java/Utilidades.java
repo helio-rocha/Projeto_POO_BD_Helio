@@ -36,7 +36,7 @@ public class Utilidades
         while (flag)
         {
             int[] ids = playerDB.researchAllPlayers();
-            System.out.println("Pressione o ID do player para acessar suas informações");
+            System.out.println("Pressione o ID do player para acessar suas informacoes");
             System.out.println("Pressione 0 para voltar");
             op = sc.nextInt();
             System.out.println();
@@ -123,7 +123,7 @@ public class Utilidades
         {
             int[] ids = playerDB.researchInventario(player.getId());
             System.out.println();
-            System.out.println("Pressione o ID da arma para acessar suas informações");
+            System.out.println("Pressione o ID da arma para acessar suas informacoes");
             System.out.println("Pressione 0 para voltar");
             int op = sc.nextInt();
             System.out.println();
@@ -238,7 +238,7 @@ public class Utilidades
         {
             int[] ids = inimigoDB.researchAllInimigos();
             System.out.println();
-            System.out.println("Pressione o ID do inimigo para acessar suas informações");
+            System.out.println("Pressione o ID do inimigo para acessar suas informacoes");
             System.out.println("Pressione 0 para voltar");
             op = sc.nextInt();
             System.out.println();
@@ -299,7 +299,7 @@ public class Utilidades
                 }
                 case 3 ->
                 {
-                    areaId = Utilidades.escolherAreaNesta(inimigo.getId());//mostrar somente as que ele não esta
+                    areaId = Utilidades.escolherAreaNesta(inimigo.getId());//mostrar somente as que ele nao esta
                     if (areaId == 0) break;
                     inimigoDB.addInimigoArea(inimigo.getId(), areaId);
                     System.out.println();
