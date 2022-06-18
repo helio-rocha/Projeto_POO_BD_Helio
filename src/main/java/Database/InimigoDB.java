@@ -3,6 +3,7 @@ package Database;
 import Inimigos.Inimigo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class InimigoDB extends Database
 {
@@ -148,6 +149,37 @@ public class InimigoDB extends Database
                 System.out.println("Erro ao fechar a conexao: " + e.getMessage());
             }
         }
+    }
+
+    public ArrayList<Inimigo> researchInimigosArea(int id){
+        connect();
+        ArrayList<Inimigo> inimigos = new ArrayList<>();
+        String sql = "SELECT * FROM inimigo WHERE id IN (SELECT I.id FROM inimigo AS I, inimigo_esta_area AS IA WHERE I.id = IA.inimigo_id AND IA.area_id = ?)";
+        try{
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            result = pst.executeQuery();
+            check = true;
+
+            while(result.next()){
+                int inimigoId = result.getInt("id");
+                String inimigoNome = result.getString("nome");
+                int inimigoDano = result.getInt("dano");
+                int inimigoVida = result.getInt("vida");
+                Inimigo inimigoTemp = new Inimigo(inimigoId,inimigoNome,inimigoDano,inimigoVida);
+                inimigos.add(inimigoTemp);
+            }
+        }catch (SQLException e){
+            System.out.println("Erro de operação: " + e.getMessage());
+        }finally {
+            try {
+                connection.close();
+                result.close();
+            }catch (SQLException e){
+                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+        return inimigos;
     }
 
     public void DeleteInimigoArea(int id, int areaId)

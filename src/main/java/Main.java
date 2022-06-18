@@ -1,11 +1,14 @@
 import Areas.Area;
 import Database.AreaDB;
+import Database.InimigoDB;
+import Inimigos.Inimigo;
 
 import java.util.Scanner;
 
 public class Main
 {
     static AreaDB areaDB = new AreaDB();
+    static InimigoDB inimigoDB = new InimigoDB();
 
     public static void main(String[] args)
     {
@@ -39,6 +42,7 @@ public class Main
                     int id = Utilidades.escolherArea();
                     if (id == 0) break;
                     Area area = areaDB.researchArea(id);
+                    area.setInimigos(inimigoDB.researchInimigosArea(area.getId()));
                     Utilidades.verArea(area);
                 }
                 case 7 -> flag = false;

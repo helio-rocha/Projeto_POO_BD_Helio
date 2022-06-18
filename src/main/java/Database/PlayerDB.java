@@ -185,7 +185,6 @@ public class PlayerDB extends Database
         }finally {
             try {
                 connection.close();
-                statement.close();
                 result.close();
             }catch (SQLException e){
                 System.out.println("Erro ao fechar a conexão: " + e.getMessage());

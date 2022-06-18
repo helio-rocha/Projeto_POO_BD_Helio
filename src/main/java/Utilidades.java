@@ -468,6 +468,7 @@ public class Utilidades
                     inimigoId = Utilidades.escolherInimigoNesta(area.getId());
                     if (inimigoId == 0) break;
                     inimigoDB.addInimigoArea(inimigoId, area.getId());
+                    area.setInimigos(inimigoDB.researchInimigosArea(area.getId()));
                     System.out.println();
                     System.out.println("Inimigo adicionado na area");
                     System.out.println();
@@ -476,6 +477,7 @@ public class Utilidades
                 {
                     inimigoId = Utilidades.escolherInimigoEsta(area.getId()); //mostrar somente as que ele esta
                     inimigoDB.DeleteInimigoArea(inimigoId, area.getId());
+                    area.setInimigos(inimigoDB.researchInimigosArea(area.getId()));
                     System.out.println();
                     System.out.println("Inimigo deletado da area");
                     System.out.println();
@@ -486,6 +488,7 @@ public class Utilidades
                     System.out.println();
                     System.out.println("area deletada");
                     System.out.println();
+                    flag = false;
                 }
                 case 6 -> flag = false;
                 default ->
