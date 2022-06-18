@@ -30,7 +30,7 @@ public class Main
                     System.out.println("Personagem Criado");
                     System.out.println();
                 }
-                case 2 -> Utilidades.escolherPersonagem(); // Banco de dados
+                case 2 -> Utilidades.escolherPersonagem();
                 case 3 -> Utilidades.criarInimigo();
                 case 4 -> Utilidades.escolherInimigo();
                 case 5 -> Utilidades.criarArea();
@@ -38,7 +38,7 @@ public class Main
                 {
                     int id = Utilidades.escolherArea();
                     if (id == 0) break;
-                    Area area = areaDB.researchArea(id); // Pegar banco
+                    Area area = areaDB.researchArea(id);
                     Utilidades.verArea(area);
                 }
                 case 7 -> flag = false;

@@ -44,9 +44,9 @@ public class AreaDB extends Database
         try {
             pst = connection.prepareStatement(sql);
             int id = researchId()+1;
-            pst.setString(1, String.valueOf(id));      // concatena nome na primeira ? do comando
-            pst.setString(2, area.getNome());      // concatena nome na primeira ? do comando
-            pst.execute();// executa o comando
+            pst.setString(1, String.valueOf(id));
+            pst.setString(2, area.getNome());
+            pst.execute();
             check = true;
 
         } catch (SQLException e) {

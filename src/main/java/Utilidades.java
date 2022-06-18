@@ -4,8 +4,8 @@ import Database.AreaDB;
 import Database.ArmaDB;
 import Database.InimigoDB;
 import Database.PlayerDB;
-import Personagens.Inimigos.Inimigo;
-import Personagens.Players.Player;
+import Inimigos.Inimigo;
+import Players.Player;
 
 import java.util.Scanner;
 

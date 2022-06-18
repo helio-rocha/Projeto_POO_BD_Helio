@@ -1,6 +1,6 @@
 package Areas;
 
-import Personagens.Inimigos.Inimigo;
+import Inimigos.Inimigo;
 
 public class Area
 {
@@ -48,7 +48,5 @@ public class Area
     {
         System.out.println("Nome: " + nome);
         System.out.println("Id: " + id);
-
-
     }
 }

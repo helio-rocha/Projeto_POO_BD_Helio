@@ -5,7 +5,7 @@ public class Arma
     private int id;
     private String nome;
 
-    private int dano;
+    private final int dano;
     private boolean is_equipado;
 
     public int getDano()
@@ -27,11 +27,6 @@ public class Arma
     {
         this.nome = nome;
         this.dano = dano;
-    }
-
-    public Arma()
-    {
-
     }
 
     public Arma(int id, String nome, int dano, boolean is_equipado)

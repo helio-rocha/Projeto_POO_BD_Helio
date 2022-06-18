@@ -1,6 +1,6 @@
 package Database;
 
-import Personagens.Inimigos.Inimigo;
+import Inimigos.Inimigo;
 
 import java.sql.SQLException;
 
@@ -13,10 +13,10 @@ public class InimigoDB extends Database
         try {
             pst = connection.prepareStatement(sql);
             int id = researchId()+1;
-            pst.setString(1, String.valueOf(id));      // concatena nome na primeira ? do comando
-            pst.setString(2, inimigo.getNome());      // concatena nome na primeira ? do comando
-            pst.setString(3, String.valueOf(inimigo.getDano()));      // concatena nome na primeira ? do comando
-            pst.setString(4, String.valueOf(inimigo.getVida()));      // concatena nome na primeira ? do comando
+            pst.setString(1, String.valueOf(id));
+            pst.setString(2, inimigo.getNome());
+            pst.setString(3, String.valueOf(inimigo.getDano()));
+            pst.setString(4, String.valueOf(inimigo.getVida()));
             pst.execute();// executa o comando
             check = true;
 
@@ -131,9 +131,9 @@ public class InimigoDB extends Database
         String sql = "INSERT INTO inimigo_esta_area VALUES(?,?)";
         try {
             pst = connection.prepareStatement(sql);
-            pst.setString(1, String.valueOf(areaId));      // concatena nome na primeira ? do comando
-            pst.setString(2, String.valueOf(id));      // concatena nome na primeira ? do comando
-            pst.execute();// executa o comando
+            pst.setString(1, String.valueOf(areaId));
+            pst.setString(2, String.valueOf(id));
+            pst.execute();
             check = true;
 
         } catch (SQLException e) {

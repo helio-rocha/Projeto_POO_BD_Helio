@@ -1,7 +1,7 @@
 package Database;
 
 import Armas.Arma;
-import Personagens.Players.Player;
+import Players.Player;
 
 import java.sql.SQLException;
 
@@ -13,17 +13,17 @@ public class PlayerDB extends Database
         try {
             pst = connection.prepareStatement(sql);
             int id = researchId()+1;
-            pst.setString(1, String.valueOf(id));      // concatena nome na primeira ? do comando
-            pst.setString(2, player.getNome());      // concatena nome na primeira ? do comando
-            pst.setString(3, String.valueOf(player.getVida()));      // concatena nome na primeira ? do comando
-            pst.setString(4, String.valueOf(player.getDanoTotal()));      // concatena nome na primeira ? do comando
-            pst.setString(5, String.valueOf(player.getDanoBase()));      // concatena nome na primeira ? do comando
-            pst.setString(6, String.valueOf(player.getVitalidade()));      // concatena nome na primeira ? do comando
-            pst.setString(7, String.valueOf(player.getForca()));      // concatena nome na primeira ? do comando
-            pst.setString(8, String.valueOf(player.getSabedoria()));      // concatena nome na primeira ? do comando
-            pst.setString(9, String.valueOf(player.getInteligencia()));      // concatena nome na primeira ? do comando
-            pst.setString(10, String.valueOf(player.getDestreza()));      // concatena nome na primeira ? do comando
-            pst.execute();// executa o comando
+            pst.setString(1, String.valueOf(id));
+            pst.setString(2, player.getNome());
+            pst.setString(3, String.valueOf(player.getVida()));
+            pst.setString(4, String.valueOf(player.getDanoTotal()));
+            pst.setString(5, String.valueOf(player.getDanoBase()));
+            pst.setString(6, String.valueOf(player.getVitalidade()));
+            pst.setString(7, String.valueOf(player.getForca()));
+            pst.setString(8, String.valueOf(player.getSabedoria()));
+            pst.setString(9, String.valueOf(player.getInteligencia()));
+            pst.setString(10, String.valueOf(player.getDestreza()));
+            pst.execute();
             check = true;
 
         } catch (SQLException e) {

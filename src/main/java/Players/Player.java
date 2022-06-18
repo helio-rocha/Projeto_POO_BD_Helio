@@ -1,4 +1,4 @@
-package Personagens.Players;
+package Players;
 
 import Armas.Arma;
 
@@ -7,17 +7,17 @@ public class Player
 {
     private int id;
     private String nome;
-    private int vida;
+    private final int vida;
     private int danoTotal;
-    private final int danoBase = 50;
+    private int danoBase = 50;
 
     static int vidaBase;
 
-    private int vitalidade;
-    private int forca;
-    private int sabedoria;
-    private int inteligencia;
-    private int destreza;
+    private final int vitalidade;
+    private final int forca;
+    private final int sabedoria;
+    private final int inteligencia;
+    private final int destreza;
     private Arma arma;
 
 
@@ -32,12 +32,12 @@ public class Player
         this.nome = nome;
         this.vida = vida;
         this.danoTotal = danoTotal;
+        this.danoBase = danoBase;
         this.vitalidade = vitalidade;
         this.forca = forca;
         this.sabedoria = sabedoria;
         this.inteligencia = inteligencia;
         this.destreza = destreza;
-        this.arma = arma;
     }
 
     public Player(String nome)
@@ -53,11 +53,6 @@ public class Player
         vida = vidaBase + 10*vitalidade;
 
         danoTotal = danoBase;
-    }
-
-    public Player()
-    {
-
     }
 
     public int getVida()

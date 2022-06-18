@@ -1,16 +1,11 @@
-package Personagens.Inimigos;
+package Inimigos;
 
 public class Inimigo
 {
     private int id;
     public String nome;
-    private int dano;
-    private int vida;
-
-    public Inimigo()
-    {
-        this.dano = 10;
-    }
+    private final int dano;
+    private final int vida;
 
     public Inimigo(String nome,int dano, int vida)
     {
